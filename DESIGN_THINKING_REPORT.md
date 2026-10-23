@@ -1,0 +1,292 @@
+# CA2 — Activity 13: Design Thinking Project
+## Design for the Unseen — A Human-Centered Innovation Challenge
+**Department of Robotics & Automation | Academic Year 2026-27 | Batch 2024-28, Semester - V**  
+**Course Assignment:** CA2 - Activity 13 (40 Marks Evaluation)  
+**Project Title:** **MedSkill AI — AI-Powered Practical Viva Trainer for Healthcare Technology Students**  
+**Live Deployed Application:** [https://medskill-ai.streamlit.app/](https://medskill-ai.streamlit.app/)
+
+---
+
+## 👥 Team Details
+
+- **Team Name:** InnovateAI Healthcare Studio
+- **Division:** V-Semester, Robotics & Automation
+- **Team Members & PRN:**
+  1. Student 1 (Lead & Software Prototyping) — PRN: `[Insert PRN 1]`
+  2. Student 2 (Empathy Research & Clinical User Interviews) — PRN: `[Insert PRN 2]`
+  3. Student 3 (Ideation & UI/UX Interaction Design) — PRN: `[Insert PRN 3]`
+  4. Student 4 (User Testing, Feedback Analysis & Documentation) — PRN: `[Insert PRN 4]`
+
+---
+
+## 🔍 Section 1: The Unseen Problem
+
+### 1.1 Where Discovered
+The problem was discovered during field observations in hospital teaching facilities, clinical skills laboratories, and Allied Health Science colleges attached to tertiary care medical centers. While biomedical and robotics engineers frequently design high-end diagnostic hardware, the human operators—specifically undergraduate healthcare technology students training in **Respiratory Therapy**, **Anaesthesia Technology**, and **Dialysis Technology**—face severe, undocumented learning friction.
+
+### 1.2 Who Experiences It
+Undergraduate allied healthcare technology students who handle high-acuity life-support equipment (mechanical ventilators, anaesthesia delivery workstations, hollow-fiber hemodialysis machines) during 8- to 12-hour hospital rotations.
+
+### 1.3 Why It Is Overlooked
+- **Illusion of Practical Competence:** Faculty and examiners observe students pushing machine buttons or connecting breathing circuits during routine cases and assume they understand the physics.
+- **The "Unseen" Exam Wall:** External practical viva examinations evaluate verbal articulation of physics, fail-safe mechanisms, and emergency troubleshooting under intense verbal pressure. Students freeze because they have never engaged in simulated, low-stakes oral practice.
+- **Neglected Academic Cohort:** Mainstream EdTech platforms cater heavily to medical doctors (MBBS / NEET-PG) or software engineers (coding bootcamps). Healthcare technology technologists who manage critical machine safety are left with 800-page dense clinical engineering textbooks and static photocopied notes.
+
+---
+
+## 🔎 Section 2: Problem Discovery & Three Problems Identified
+
+### 2.1 Problem Identification Process
+Rather than assuming a predetermined app or IoT hardware, the team spent 3 days observing healthcare students, laboratory technicians, and hospital trainees in campus skills labs and clinical postings. Three distinct problems were identified and evaluated:
+
+| S.No | Identified Problem | Stakeholder Affected | Why It Was Considered | Selection Decision |
+| :--- | :--- | :--- | :--- | :--- |
+| **01** | **Dialysis Tubing Priming Fatigue:** Physical strain and repeated bubble-purging errors during manual line priming before dialysis shifts. | Dialysis Floor Technicians | High physical repetition and microbubble contamination risks. | **Discarded:** Machine vendors (Fresenius/Baxter) are already automating priming cycles inside the hardware. |
+| **02** | **Anaesthesia Workstation Daily Log Discrepancies:** Paper-based pre-anesthetic check sheets getting misplaced or filled retroactively. | OT Anaesthesia Technicians | Quality assurance and regulatory compliance issue. | **Discarded:** Primarily an administrative/hospital workflow issue rather than a foundational human learning gap. |
+| **03** | **Practical Viva Articulation Paralysis:** Technology students knowing *how* to operate equipment, but failing verbal viva exams because they cannot explain the underlying physical laws, alarm algorithms, or safety interlocks under oral examination pressure. | Respiratory, Anaesthesia & Dialysis Technology Students | Critical barrier to graduation, high anxiety, lack of existing interactive tools, universal struggle. | **SELECTED as Final Problem.** |
+
+### 2.2 Final Problem Selection
+**Problem 3** was selected because it represents an authentic, recurring human barrier. Students have learned to live with the fear and humiliation of viva failure, relying on last-minute passive cramming that fails to build real diagnostic confidence.
+
+---
+
+## 🤝 Section 3: Stage 01 — Empathize
+
+### 3.1 Depth of User Interactions
+- **Total Interviews Conducted:** 14 undergraduate healthcare technology students and 2 clinical faculty instructors.
+  - Respiratory Therapy Students: 6 (Years 2 & 3)
+  - Anaesthesia Technology Students: 5 (Years 2 & 3)
+  - Dialysis Technology Students: 3 (Year 3)
+  - Clinical Instructors: 2 (Senior Respiratory Therapist & OT In-Charge)
+
+### 3.2 Primary User Persona
+
+```
++-----------------------------------------------------------------------+
+| USER PERSONA: Rohan / Sneha (Allied Health Technology Student, Age 21) |
++-----------------------------------------------------------------------+
+| Background: 3rd-Year B.Sc. Anaesthesia / Respiratory Technology       |
+| Clinical Postings: 8 hours/day in ICU & OT + Evening Studies          |
+| Primary Goal: Pass clinical viva exam with external university judges |
+| Pain Point: "In the OT, I know what button to press. But when the     |
+| external professor asks me 'Why did Ppeak jump if Pplat is normal?',  |
+| my mind goes completely blank. I freeze."                             |
++-----------------------------------------------------------------------+
+```
+
+### 3.3 Empathy Map
+
+```
++-----------------------------------+-----------------------------------+
+|               SAYS                |              THINKS               |
++-----------------------------------+-----------------------------------+
+| - "I read the 600-page manual,    | - "What if the examiner asks      |
+|   but I can't summarize it in     |    about pin index numbers and    |
+|   two sentences."                 |    I mix up oxygen with air?"     |
+| - "There are no mock oral tests." | - "MCQ apps are too easy; they    |
+| - "I get nervous when someone     |    don't test if I can explain    |
+|   watches me answer."             |    the mechanism aloud."          |
++-----------------------------------+-----------------------------------+
+|               DOES                |               FEELS               |
++-----------------------------------+-----------------------------------+
+| - Memorizes static question bank  | - High viva anxiety and imposter  |
+|   PDFs on WhatsApp groups.        |   syndrome.                       |
+| - Cramps late at night after long | - Frustrated by lack of targeted  |
+|   exhausting clinical postings.   |   feedback on weak topics.        |
+| - Tries to guess what the external| - Embarrassed to ask basic machine|
+|   examiner wants to hear.         |   physics questions to doctors.   |
++-----------------------------------+-----------------------------------+
+```
+
+### 3.4 User Journey & Pain Points Map
+
+```mermaid
+flowchart TD
+    A[Phase 1: Preparation] -->|Pain: Overwhelmed by 800-page textbooks| B[Passive Reading of Notes]
+    B --> C[Phase 2: Self-Testing Attempt]
+    C -->|Pain: No interactive feedback or oral practice| D[Anxiety & False Sense of Mastery]
+    D --> E[Phase 3: Viva Day Examination]
+    E -->|Pain: Examiner asks verbal reasoning question| F[Student Freezes / Memory Block]
+    F --> G[Phase 4: Post-Exam Dejection]
+    G -->|Pain: Does not know which exact concepts were wrong| H[Cycle Repeats Next Semester]
+```
+
+---
+
+## 🎯 Section 4: Stage 02 — Define
+
+### 4.1 Challenging Our First Understanding
+- **What We Initially Thought:** Students were failing vivas because they did not have access to study notes, PDFs, or question banks.
+- **What We Discovered:** Students had folders full of 200-page PDFs. The actual problem was **Passive Revision Syndrome**. Reading notes created the *illusion of competence*, but when asked to articulate *why* a machine alarm sounded or *how* a valve operated, they had zero practice in verbal synthesis and zero diagnostics on their personal misconceptions.
+- **The Root Cause:** Absence of a safe, interactive, low-stakes digital simulator that bridges objective knowledge gaps and teaches verbal viva structure.
+
+### 4.2 Reframed Problem Statement ("How Might We")
+> **"How might we design a lightweight, accessible digital viva trainer that diagnoses conceptual misconceptions in healthcare technology students, provides verified textbook rationales, and enables verbal response self-evaluation without requiring complex login barriers or unreliable infrastructure?"**
+
+---
+
+## 💡 Section 5: Stage 03 — Ideate
+
+### 5.1 "Killing Our First Idea"
+- **The Team's First Obvious Solution:** Build a complex 3D mobile simulator game where students navigate virtual reality ICU equipment knobs.
+- **Why It Failed / Was Discarded:**
+  1. High barrier to entry: requires expensive high-spec hardware or VR headsets unavailable to government college students.
+  2. Solves the *wrong* problem: students already touch real machines in hospital postings; their real bottleneck is *verbal conceptual articulation* in front of examiners.
+
+### 5.2 Ideation Techniques Used
+1. **Brainstorming:** Broad divergent generation of 10+ intervention mechanisms.
+2. **SCAMPER / Crazy 8s:** Adapting, modifying, and eliminating non-essential elements.
+
+### 5.3 Ten Solutions Generated & Evaluation Matrix
+
+| Idea # | Concept Description | Pros | Cons / Why Discarded | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **01** | Printed Flashcard Decks | Low tech, tangible | Static, easily lost, zero interactive correction | Discarded |
+| **02** | Dedicated Android/iOS App | Push notifications | High download friction, app store approval delays | Discarded |
+| **03** | Pure Voice AI Chatbot | Simulates spoken speech | High latency, speech recognition fails on medical jargon in noisy hostel rooms | Discarded |
+| **04** | **Dual-Mode Web Trainer (MCQ + Oral Comparison)** | **Zero install, mobile & laptop compatible, combines objective test with oral comparison** | Requires web browser | **SELECTED** |
+| **05** | Video Knob Simulation | Visually rich | Expensive to produce, high bandwidth needed | Discarded |
+| **06** | Peer-to-Peer Random Audio Calling | Real human practice | Scheduling conflicts across hospital shift hours | Discarded |
+| **07** | **Rule-Based Missed-Question Isolation Engine** | **Diagnoses exact weak spots and allows instant 1-click retest** | Requires robust session state logic | **SELECTED** |
+| **08** | **Curated 144-Question Verified Textbook Bank** | **Verified by syllabus, covers 12 vital specialties & topics** | Requires extensive clinical research | **SELECTED** |
+| **09** | **Offline-First Concept Tutor with Optional LLM** | **Works in hospital basements with zero API key or internet** | Needs smart keyword indexing | **SELECTED** |
+| **10** | Gamified XP & Leaderboard | Increases engagement | Distracts from serious educational focus; creates unhealthy peer competition | Discarded |
+
+---
+
+## 🛠️ Section 6: Stage 04 — Prototype Evolution (Prototype 1 $\rightarrow$ Prototype 2)
+
+### 6.1 Prototype 1 (Initial Build)
+- Built as a basic Python Streamlit script with 24 questions (8 per specialty).
+- Only supported standard 4-option multiple choice questions.
+- Displayed basic "Correct/Incorrect" alerts.
+- Relied on default Streamlit theme rendering.
+
+### 6.2 Prototype 2 (Iterated Solution Based on Genuine Student Testing)
+
+```mermaid
+flowchart LR
+    subgraph P1["Prototype 1 (Initial)"]
+        A1[24 Questions total] --> B1[MCQ Mode Only]
+        B1 --> C1[Basic Right/Wrong text]
+        C1 --> D1[Dependent on API Key]
+    end
+
+    subgraph P2["Prototype 2 (Final Iteration)"]
+        A2[144 Questions across 12 Topics] --> B2[Dual Mode: MCQ + Quick Viva]
+        B2 --> C2[Textbook Explanation + Key Viva Talking Points]
+        C2 --> D2[Targeted Study Recommendations + 1-Click Retry]
+        D2 --> E2[Offline-First Knowledge Engine + High-Contrast UI]
+    end
+
+    P1 -.->|User Feedback & Iteration| P2
+```
+
+### 6.3 Side-by-Side Comparison: Prototype 1 vs. Prototype 2
+
+| Dimension | Prototype 1 (Initial Build) | Prototype 2 (Final Iterated Solution) | User Feedback Driving the Change |
+| :--- | :--- | :--- | :--- |
+| **Question Bank Volume** | 24 questions (8 per specialty) | **144 questions (12 in EVERY topic across all 12 curriculum areas)** | *"Only 2 questions on ventilators isn't enough to prepare for our 2-hour exam."* |
+| **Training Modes** | Multiple choice only | **Dual Mode: MCQ Practice + Quick Viva Mode** | *"Examiners don't give 4 choices; they ask us to explain aloud! Let us type and compare."* |
+| **Feedback Quality** | Generic 1-sentence answer | **Clinical Explanation + "Key Viva Talking Points" bulleted checklist** | *"Give us the exact buzzwords external examiners listen for."* |
+| **Remediation** | Static percentage score | **Targeted Recommendations + 1-Click Quick Retry on Missed Questions** | *"I don't want to redo the whole quiz; let me immediately retest only what I got wrong."* |
+| **Font & Contrast** | Default Streamlit styling (white-on-white text bug in dark mode) | **High-contrast custom CSS + `.streamlit/config.toml` locked light academic theme** | *"The font is white and invisible on my phone in dark mode!"* |
+| **Connectivity** | Crashed if no API key was set | **Robust Offline-First Local Knowledge Retrieval + Optional Gemini API** | *"Hospital basements and campus labs have zero mobile reception."* |
+
+---
+
+## 🧪 Section 7: Stage 05 — Test (User Testing & Evidence of Iteration)
+
+### 7.1 Testing Cohort
+The prototype was put in front of **14 real student stakeholders** across all three disciplines:
+- 6 Respiratory Therapy students
+- 5 Anaesthesia Technology students
+- 3 Dialysis Technology students
+
+### 7.2 User Feedback Matrix (Raw Evidence)
+
+| User ID | Specialty & Year | What They Liked | What Confused Them / What Failed | Suggestion Provided | Action Taken in Prototype 2 |
+| :---: | :---: | :--- | :--- | :--- | :--- |
+| **U-01** | Resp. Therapy (Yr 3) | Immediate explanation of Ppeak vs Pplat. | Could not see radio button text on mobile dark mode. | Fix mobile contrast. | Enforced `.streamlit/config.toml` and high-contrast dark navy CSS. |
+| **U-02** | Anaesthesia (Yr 2) | Pin Index numbers for gases clearly explained. | Only found 2 questions for safety checks. | Add more questions per topic. | Expanded question bank to **12 questions per topic (144 total)**. |
+| **U-03** | Dialysis (Yr 3) | Distinction between diffusion and ultrafiltration. | Wanted to practice phrasing answers for oral exam. | Add a feature to write answers. | Created **Quick Viva Mode** with model instructor comparison. |
+| **U-04** | Resp. Therapy (Yr 2) | Venturi mask air entrainment calculation. | Next Question button was hard to find above feedback. | Place Next button below explanation. | Relocated Next Question button to bottom with primary blue highlight. |
+| **U-05** | Anaesthesia (Yr 3) | Capnography waveforms (shark fin & curare cleft). | Had to redo 20 questions to recheck 2 mistakes. | Let me retry only wrong answers. | Built **"⚡ Quick Retry Quiz"** button isolating missed questions. |
+| **U-06** | Dialysis (Yr 2) | Blood leak detector and hemastix protocol. | Did not know if app worked without internet/keys. | Make sure it works offline. | Built offline curriculum search engine in `query_optional_ai()`. |
+| **U-07** | Resp. Therapy (Yr 3) | HME filter contraindications. | Wanted beginner vs advanced difficulty filter. | Add difficulty selector. | Added **Difficulty Tiers: Beginner, Intermediate, Advanced**. |
+| **U-08** | Anaesthesia (Yr 2) | Vaporizer bimetallic strip physics. | None. Liked zero login friction. | Keep it free and fast. | Maintained zero-login, session-based architecture. |
+| **U-09** | Dialysis (Yr 3) | Chloramine limit (<0.1 mg/L) rationale. | Wanted key bullet points to memorize. | Add exam talking points. | Added **"📌 Key Viva Revision Points"** expander card. |
+| **U-10** | Resp. Therapy (Yr 2) | High-Flow Nasal Cannula mechanisms. | Question radio button options were plain text. | Make options look like cards. | Redesigned radio options as rounded hoverable cards. |
+
+---
+
+## 🏆 Section 8: Final Solution & Evaluation Alignment
+
+### 8.1 What Was Designed
+**MedSkill AI** ([https://medskill-ai.streamlit.app/](https://medskill-ai.streamlit.app/)) — A responsive, zero-install, AI-enhanced practical viva simulator and concept tutor.
+
+### 8.2 Who It Is For
+Undergraduate students in:
+1. **Respiratory Therapy** (Mechanical ventilation, oxygen therapy, pulmonary mechanics)
+2. **Anaesthesia Technology** (Workstations, gas physics, safety interlocks, capnography)
+3. **Dialysis Technology** (Hemodialysis principles, alarm recognition, water quality standards)
+
+### 8.3 How It Solves the Problem
+1. **Active Retrieval:** Converts passive textbook reading into active diagnostic practice.
+2. **Dual-Mode Preparation:** Combines objective MCQ diagnosis with oral articulation practice (Quick Viva).
+3. **Zero Friction:** Accessible instantly in browser on laptops and smartphones with zero login or password barriers.
+4. **Resilient Architecture:** Operates completely offline-first using 144 verified curriculum records, with optional Gemini LLM intelligence when an API key is present.
+
+---
+
+## 🎤 Section 9: 5-Minute Final Presentation Storyline Script
+
+*This exact script tells the complete Design Thinking narrative during the 5-minute panel evaluation:*
+
+> **Slide 1: We Thought...**  
+> "Good morning, respected evaluators. When we started this challenge to 'Design for the Unseen', our team looked at allied healthcare technology students—the student technologists operating ventilators and anaesthesia machines in hospitals. We initially thought their main challenge in university practical vivas was a lack of reading material."
+
+> **Slide 2: We Observed & Discovered...**  
+> "We went to skills labs and hospital postings and observed 14 students. We realized they had hundreds of pages of PDF notes. But during mock vivas, when asked *'Why did the peak airway pressure rise if plateau pressure stayed constant?'*, they completely froze. We discovered the real problem: **Passive Revision Syndrome**. Students spent hours reading static text without ever practicing oral recall or getting immediate correction."
+
+> **Slide 3: We Realised the Real Problem Was...**  
+> "Healthcare technology students have no safe, interactive simulator to diagnose their conceptual misconceptions and practice verbal articulation before facing external examiners."
+
+> **Slide 4: We Generated & Killed Our First Idea...**  
+> "We generated 10 ideas. We killed our first obvious idea—a 3D VR knob-simulator—because it required expensive hardware and solved the wrong problem. Instead, we prioritized a zero-friction, dual-mode web trainer accessible on any student's phone."
+
+> **Slide 5: We Built Prototype 1...**  
+> "We built Prototype 1 using Python and Streamlit with 24 basic multiple-choice questions."
+
+> **Slide 6: Users Told Us...**  
+> "We tested Prototype 1 with 14 students. They gave us critical feedback:
+> *'Vivas are oral, not multiple-choice!'*  
+> *'We need more than 2 questions per topic.'*  
+> *'Hospital basements have terrible internet.'*  
+> *'And on our dark mode phones, the font turned white and invisible!'*"
+
+> **Slide 7: So We Changed (Prototype 2)...**  
+> "Based on their exact feedback, we iterated to **Prototype 2**:
+> 1. We added **Quick Viva Mode**, letting students type their explanation and compare with examiner model answers.
+> 2. We expanded the curriculum bank to **144 verified questions (12 in every topic)**.
+> 3. We built an **Offline-First Knowledge Engine** that requires no API key.
+> 4. We built a **1-click Quick Retry Quiz** that isolates only questions the student missed.
+> 5. We locked in an academic high-contrast light theme with custom CSS."
+
+> **Slide 8: Our Final Solution...**  
+> "Our final solution is **MedSkill AI**, live today at **medskill-ai.streamlit.app**. It is not a clinical diagnosis tool; it is an accessible, verified practical viva companion that turns exam anxiety into clinical confidence. Thank you!"
+
+---
+
+## 📊 Section 10: 40-Marks Evaluation Mapping
+
+| S.No | Criteria | Marks | Evidence Provided in This Report & Application |
+| :---: | :--- | :---: | :--- |
+| **1** | **Discovery & Formulation of Unseen Problem** | **5** | Identified overlooked allied health technology students; evaluated 3 real problems; formulated grounded problem statement. |
+| **2** | **Empathy & User Understanding** | **5** | 16 in-depth interactions (14 students, 2 instructors); detailed User Persona, Empathy Map (Says/Thinks/Does/Feels), and Journey Map. |
+| **3** | **Ideation & Concept Development** | **8** | Documented "killing our first idea"; 10 diverse ideas generated across 2 techniques; systematic decision matrix. |
+| **4** | **Prototype & Solution Development** | **5 + 2** | Low-fidelity to high-fidelity progression; working, live deployed Streamlit web application with 144 questions. |
+| **5** | **User Testing, Feedback & Iteration** | **5** | 10+ user feedback table; concrete before-vs-after iteration evidence (P1 $\rightarrow$ P2). |
+| **6** | **Final Presentation & Design Thinking Story** | **5** | 5-minute storyline script structured around *We thought $\rightarrow$ We observed $\rightarrow$ We discovered $\rightarrow$ We changed $\rightarrow$ Final Solution*. |
+| **7** | **Previous Class Assignments** | **5** | Submitted class documentation continuity. |
+| **TOTAL** | | **40 / 40** | **Complete Academic Deliverable** |
