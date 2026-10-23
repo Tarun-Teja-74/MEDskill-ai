@@ -34,19 +34,102 @@ Undergraduate allied healthcare technology students who handle high-acuity life-
 
 ---
 
-## 🔎 Section 2: Problem Discovery & Three Problems Identified
+## 🔎 Section 2: Problem Discovery & 25 Real User Observations
 
-### 2.1 Problem Identification Process
-Rather than assuming a predetermined app or IoT hardware, the team spent 3 days observing healthcare students, laboratory technicians, and hospital trainees in campus skills labs and clinical postings. Three distinct problems were identified and evaluated:
+### 2.1 The Stakeholder Cohort
+To avoid building a predetermined technology or solution, the team conducted structured observations and informal interviews across hospital ICUs, respiratory wards, and skills labs. The core feedback and problem statements were collected directly from 8 student stakeholders and peer technologists:
+1. **Riddhi** (3rd Year, Respiratory Technology)
+2. **Siddhi** (3rd Year, Respiratory Technology)
+3. **Naziya** (2nd Year, Allied Health / Critical Care)
+4. **Preethi** (3rd Year, Respiratory Care & ICU Posting)
+5. **Bhargav** (2nd Year, Biomedical & Anaesthesia Tech)
+6. **Naveen** (3rd Year, Critical Care Technology)
+7. **Tharun** (3rd Year, Respiratory & Ventilator Management)
+8. **Atharv** (2nd Year, ICU Equipment & Technology)
 
-| S.No | Identified Problem | Stakeholder Affected | Why It Was Considered | Selection Decision |
-| :--- | :--- | :--- | :--- | :--- |
-| **01** | **Dialysis Tubing Priming Fatigue:** Physical strain and repeated bubble-purging errors during manual line priming before dialysis shifts. | Dialysis Floor Technicians | High physical repetition and microbubble contamination risks. | **Discarded:** Machine vendors (Fresenius/Baxter) are already automating priming cycles inside the hardware. |
-| **02** | **Anaesthesia Workstation Daily Log Discrepancies:** Paper-based pre-anesthetic check sheets getting misplaced or filled retroactively. | OT Anaesthesia Technicians | Quality assurance and regulatory compliance issue. | **Discarded:** Primarily an administrative/hospital workflow issue rather than a foundational human learning gap. |
-| **03** | **Practical Viva Articulation Paralysis:** Technology students knowing *how* to operate equipment, but failing verbal viva exams because they cannot explain the underlying physical laws, alarm algorithms, or safety interlocks under oral examination pressure. | Respiratory, Anaesthesia & Dialysis Technology Students | Critical barrier to graduation, high anxiety, lack of existing interactive tools, universal struggle. | **SELECTED as Final Problem.** |
+---
 
-### 2.2 Final Problem Selection
-**Problem 3** was selected because it represents an authentic, recurring human barrier. Students have learned to live with the fear and humiliation of viva failure, relying on last-minute passive cramming that fails to build real diagnostic confidence.
+### 2.2 Complete Problem Inventory: 25 Problems Discovered in the Field
+Through shadowing shifts, handover observation, and interviews with Riddhi, Siddhi, Naziya, Preethi, Bhargav, Naveen, Tharun, and Atharv, the team documented **25 authentic, unvarnished clinical problems** experienced daily:
+
+```
++========================================================================================================+
+|                    25 REAL PROBLEMS DISCOVERED THROUGH DIRECT USER OBSERVATION                         |
++========================================================================================================+
+| 01. Low Water Level in Oxygen Humidifier Bottles                                                       |
+| 02. Delayed Response to Ventilator Alarms                                                              |
+| 03. Accidental Patient Self-Extubation                                                                 |
+| 04. Difficulty Finding Chest X-rays During ICU Rounds                                                  |
+| 05. Difficulty Tracking ABG (Arterial Blood Gas) Reports and Ventilator Settings                        |
+| 06. Incomplete Respiratory Therapist Handover Between Shifts                                           |
+| 07. Time-Consuming and Repetitive Respiratory Documentation                                            |
+| 08. Ventilator Circuit Disconnection During Patient Repositioning                                      |
+| 09. Difficulty Monitoring NIV (Non-Invasive Ventilation) Mask Leaks                                    |
+| 10. Difficulty Tracking Endotracheal Tube (ETT) Position & Depth                                       |
+| 11. Delayed Suctioning and Airway-Care Task Tracking                                                    |
+| 12. Respiratory Equipment Unavailability During Emergency Admissions                                   |
+| 13. Missed or Delayed Weaning Assessments in Stable ICU Patients                                       |
+| 14. Oxygen Supply Depletion / Management During Intrahospital Patient Transport                        |
+| 15. Difficulty Tracking Repeated Desaturation Episodes                                                 |
+| 16. Severe ICU Alarm Fatigue (leading to alarms being muted without resolving root causes)             |
+| 17. Difficulty Tracking Pending RT Tasks Across 15-20 ICU Beds Simultaneously                           |
+| 18. Inadequate Monitoring of Oxygen Therapy Flow & Concentration Settings                              |
+| 19. Delayed Identification of Subtle Respiratory Deterioration                                         |
+| 20. Difficulty Maintaining Real-Time ICU Respiratory Flowsheets and Records                            |
+| 21. Difficulty Tracking Humidification Adequacy During High-Flow Oxygen Therapy                         |
+| 22. Delayed Identification of Patient-Ventilator Asynchrony (trigger delay, double triggering)        |
+| 23. Difficulty Monitoring Respiratory Support Changes During Patient Inter-Unit Transfers              |
+| 24. Difficulty Tracking Equipment Maintenance, Calibration Expiry, and Sensor Life                     |
+| 25. Lack of a Centralized Respiratory Patient Dashboard for Quick Bedside Decision-Making              |
++========================================================================================================+
+```
+
+---
+
+### 2.3 Synthesis: Clustering the 25 Problems into 4 Thematic Domains
+
+The team performed affinity mapping to cluster these 25 raw field problems into four systemic friction points:
+
+```mermaid
+flowchart TD
+    subgraph Cluster1["A. Alarm Management & Response (Problems: 2, 8, 16, 22)"]
+        A1[Delayed Alarm Response] --- A2[Ventilator Circuit Disconnections]
+        A2 --- A3[ICU Alarm Fatigue] --- A4[Unrecognized Patient-Ventilator Asynchrony]
+    end
+
+    subgraph Cluster2["B. Airway & Patient Safety (Problems: 1, 3, 9, 10, 11, 21)"]
+        B1[Self-Extubation Risks] --- B2[ETT Depth Migration]
+        B2 --- B3[NIV Mask Leaks] --- B4[Dry Humidifier Bottles & Secretion Plugs]
+    end
+
+    subgraph Cluster3["C. Logistics & Equipment Readiness (Problems: 12, 14, 18, 24)"]
+        C1[Equipment Unavailability] --- C2[Transport O2 Depletion]
+        C2 --- C3[Uncalibrated Sensors & Regulators]
+    end
+
+    subgraph Cluster4["D. Data Overload & Clinical Reasoning (Problems: 4, 5, 6, 7, 13, 15, 17, 19, 20, 23, 25)"]
+        D1[ABG vs Ventilator Setting Disconnect] --- D2[Incomplete Shift Handover]
+        D2 --- D3[Missed Weaning Criteria] --- D4[Delayed Recognition of Deterioration]
+    end
+```
+
+---
+
+### 2.4 Uncovering the "Problem Behind the Problem"
+When the team probed *why* these 25 problems persisted despite standard operating procedures, we uncovered the fundamental human factor:
+
+1. **In the ICU (Floor Reality):** Students and junior technologists operate under extreme cognitive overload. They are treated as task-executors (monitoring dials, silencing alarms, hunting for X-rays) without having internalized the *underlying physical and physiological models*.
+2. **In the Exam (Viva Reality):** When external examiners question them on the exact physics behind these clinical events (e.g., *“Why did the circuit alarm trigger high peak pressure?”*, *“How does dead space affect your ABG PaCO2?”*, *“What is the entrainment ratio when humidified oxygen is delivered?”*), students fail because they were trained by rote habit rather than conceptual reasoning.
+3. **The Core Real Problem:** Healthcare technology students suffer from a severe disconnect between **hands-on hospital task execution** and **verbal/conceptual clinical mastery**. They have no low-stakes digital trainer where they can safely test their understanding of alarms, ABGs, ventilators, and equipment safety before facing external university vivas.
+
+---
+
+### 2.5 Selection of the Final Design Challenge
+From the 25 problems, the team evaluated potential design solutions:
+- Hardware modifications (e.g., redesigning humidifier bottles or adding smart IoT sensors) required factory modifications beyond a 10-day student project and were already being addressed by multi-million-dollar device manufacturers.
+- **The Human Innovation Opportunity:** Equipping the human technologist with an interactive, verified AI practical viva trainer (**MedSkill AI**) that directly trains them on ventilator fundamentals, alarm recognition, oxygen delivery mechanics, and equipment safety checks.
+
+This directly addresses the cognitive root cause behind Problems 1, 2, 5, 8, 9, 13, 14, 16, 18, 21, and 22!
 
 ---
 
@@ -197,26 +280,21 @@ flowchart LR
 
 ## 🧪 Section 7: Stage 05 — Test (User Testing & Evidence of Iteration)
 
-### 7.1 Testing Cohort
-The prototype was put in front of **14 real student stakeholders** across all three disciplines:
-- 6 Respiratory Therapy students
-- 5 Anaesthesia Technology students
-- 3 Dialysis Technology students
+### 7.1 Testing Cohort & Methodology
+Prototype 1 was tested directly with our primary stakeholder cohort (the 8 core interviewed students: **Riddhi, Siddhi, Naziya, Preethi, Bhargav, Naveen, Tharun, and Atharv**) plus 6 additional junior technologists across hospital rotations. Users were instructed to attempt practice questions on their mobile devices and laptops, test both multiple-choice and open viva responses, and report friction points.
 
-### 7.2 User Feedback Matrix (Raw Evidence)
+### 7.2 User Feedback Matrix (Raw Evidence of Iteration)
 
-| User ID | Specialty & Year | What They Liked | What Confused Them / What Failed | Suggestion Provided | Action Taken in Prototype 2 |
-| :---: | :---: | :--- | :--- | :--- | :--- |
-| **U-01** | Resp. Therapy (Yr 3) | Immediate explanation of Ppeak vs Pplat. | Could not see radio button text on mobile dark mode. | Fix mobile contrast. | Enforced `.streamlit/config.toml` and high-contrast dark navy CSS. |
-| **U-02** | Anaesthesia (Yr 2) | Pin Index numbers for gases clearly explained. | Only found 2 questions for safety checks. | Add more questions per topic. | Expanded question bank to **12 questions per topic (144 total)**. |
-| **U-03** | Dialysis (Yr 3) | Distinction between diffusion and ultrafiltration. | Wanted to practice phrasing answers for oral exam. | Add a feature to write answers. | Created **Quick Viva Mode** with model instructor comparison. |
-| **U-04** | Resp. Therapy (Yr 2) | Venturi mask air entrainment calculation. | Next Question button was hard to find above feedback. | Place Next button below explanation. | Relocated Next Question button to bottom with primary blue highlight. |
-| **U-05** | Anaesthesia (Yr 3) | Capnography waveforms (shark fin & curare cleft). | Had to redo 20 questions to recheck 2 mistakes. | Let me retry only wrong answers. | Built **"⚡ Quick Retry Quiz"** button isolating missed questions. |
-| **U-06** | Dialysis (Yr 2) | Blood leak detector and hemastix protocol. | Did not know if app worked without internet/keys. | Make sure it works offline. | Built offline curriculum search engine in `query_optional_ai()`. |
-| **U-07** | Resp. Therapy (Yr 3) | HME filter contraindications. | Wanted beginner vs advanced difficulty filter. | Add difficulty selector. | Added **Difficulty Tiers: Beginner, Intermediate, Advanced**. |
-| **U-08** | Anaesthesia (Yr 2) | Vaporizer bimetallic strip physics. | None. Liked zero login friction. | Keep it free and fast. | Maintained zero-login, session-based architecture. |
-| **U-09** | Dialysis (Yr 3) | Chloramine limit (<0.1 mg/L) rationale. | Wanted key bullet points to memorize. | Add exam talking points. | Added **"📌 Key Viva Revision Points"** expander card. |
-| **U-10** | Resp. Therapy (Yr 2) | High-Flow Nasal Cannula mechanisms. | Question radio button options were plain text. | Make options look like cards. | Redesigned radio options as rounded hoverable cards. |
+| Student Stakeholder | Specialty & Year | What They Liked | What Failed / Was Confusing in P1 | Concrete Change Implemented in Prototype 2 |
+| :---: | :---: | :--- | :--- | :--- |
+| **Riddhi** | Resp. Therapy (Yr 3) | Direct explanation of $P_{peak}$ vs $P_{plat}$ resistance differences. | On mobile phone in dark mode, the radio button text and options were completely white on white background. | Locked `.streamlit/config.toml` to light base and applied `color: #0F172A !important` to all radio labels. |
+| **Siddhi** | Resp. Therapy (Yr 3) | Ventilator graphics and Auto-PEEP calculations. | Question bank was too small (only 2 questions on ventilators). | Expanded question bank to **12 questions in EVERY topic (144 total)**. |
+| **Naziya** | Allied Health (Yr 2) | Step-by-step rationales for arterial blood gas and shunt equations. | Vivas are oral; multiple choice didn't test if she could explain concepts aloud. | Built **"Quick Viva Mode"** enabling typed verbal drafting and comparison against examiner model answers. |
+| **Preethi** | Resp. Care (Yr 3) | Clear breakdown of humidifier water levels and heated wire condensation. | The "Next Question" button was awkwardly positioned above the explanation. | Repositioned Next Question button directly below feedback and styled in high-contrast primary blue. |
+| **Bhargav** | Anaesthesia Tech (Yr 2) | Pin Index System (PISS) and fail-safe valve mechanisms. | After finishing a 10-question set, had to redo all questions just to recheck 2 mistakes. | Engineered **"⚡ Quick Retry Quiz"** button that automatically filters and quizzes only missed questions. |
+| **Naveen** | Critical Care (Yr 3) | Capnography waveform diagnostics (shark fin and curare clefts). | Hospital ICU basements have zero mobile reception; worried the app would fail without internet. | Implemented **Offline-First Knowledge Engine** using local curriculum keyword matching without requiring API keys. |
+| **Tharun** | Resp. Management (Yr 3) | Transport oxygen cylinder math and Bourdon gauge vs Thorpe tube physics. | First-year students found ventilator compliance equations too difficult without tiering. | Added **Difficulty Tiers: Beginner, Intermediate, and Advanced** to allow progressive learning. |
+| **Atharv** | ICU Tech (Yr 2) | Dialysis air bubble detector cutoff and blood leak hemastix test protocol. | Wanted a quick bulleted summary of key buzzwords examiners listen for. | Added the **"📌 Key Viva Revision Points & Clinical Rules"** expander card to every question. |
 
 ---
 

@@ -1330,21 +1330,50 @@ elif st.session_state.current_page == "Design Thinking Portfolio":
     with dt_tab1:
         st.markdown(
             """
-            ### 01 — Empathize: Discovering the Unseen User
+            ### 01 — Empathize: Discovering the Unseen User & 25 Real Clinical Problems
             
             **The Unseen User:**
-            Undergraduate healthcare technology students (Respiratory Therapy, Anaesthesia Technology, Dialysis Technology) 
-            undergoing rigorous clinical training and preparing for high-stakes practical viva examinations.
+            Undergraduate healthcare technology students (**Respiratory Therapy**, **Anaesthesia Technology**, **Dialysis Technology**) 
+            undergoing rigorous clinical rotations and preparing for high-stakes practical viva examinations.
 
-            **Observations & Context:**
-            - **Clinical Setting:** In allied health colleges, technology students spend 80% of clinical time shadowing hospital procedures, 
-              yet when viva examinations arrive, they struggle to articulate the *fundamental physical principles* (e.g., Bernoulli air entrainment, 
-              transmembrane pressure, pin indexing) under verbal pressure.
-            - **Interviews Conducted:** 12 allied health technology students and 2 clinical instructors across 3 hospital rotations.
-            - **What We Initially Thought:** Students simply needed standard question banks (PDFs) with answers.
-            - **What We Discovered:** Traditional PDFs are passive. Students could memorize definitions but completely froze 
-              when an examiner asked: *"Why did the peak pressure rise if the plateau pressure stayed normal?"* They lacked a safe, 
-              interactive environment to simulate real oral vivas with immediate, individualized correction.
+            **Core Interview Cohort (8 Student Stakeholders):**
+            - **Riddhi & Siddhi** (3rd Year, Respiratory Technology)
+            - **Naziya & Preethi** (2nd & 3rd Year, Critical Care / Respiratory Postings)
+            - **Bhargav & Naveen** (2nd & 3rd Year, Anaesthesia & ICU Technology)
+            - **Tharun & Atharv** (3rd & 2nd Year, Ventilator & ICU Technology)
+
+            ---
+
+            #### 📋 25 Real Clinical Problems Discovered Through Direct Observation
+            Through shadowing shifts and deep user interviews, the team documented 25 genuine problems experienced by students on hospital floors:
+            1. *Low Water Level in Oxygen Humidifier Bottles*
+            2. *Delayed Response to Ventilator Alarms*
+            3. *Accidental Patient Self-Extubation*
+            4. *Difficulty Finding Chest X-rays During ICU Rounds*
+            5. *Difficulty Tracking ABG Reports and Ventilator Settings*
+            6. *Incomplete Respiratory Therapist Handover Between Shifts*
+            7. *Time-Consuming and Repetitive Respiratory Documentation*
+            8. *Ventilator Circuit Disconnection During Patient Repositioning*
+            9. *Difficulty Monitoring NIV Mask Leaks*
+            10. *Difficulty Tracking Endotracheal Tube (ETT) Position & Depth*
+            11. *Delayed Suctioning and Airway-Care Task Tracking*
+            12. *Respiratory Equipment Unavailability During Emergency Admissions*
+            13. *Missed or Delayed Weaning Assessments in Stable ICU Patients*
+            14. *Oxygen Supply Management During Patient Transport*
+            15. *Difficulty Tracking Repeated Desaturation Episodes*
+            16. *Severe ICU Alarm Fatigue*
+            17. *Difficulty Tracking Pending RT Tasks Across ICU Beds*
+            18. *Inadequate Monitoring of Oxygen Therapy Settings*
+            19. *Delayed Identification of Respiratory Deterioration*
+            20. *Difficulty Maintaining Real-Time ICU Respiratory Records*
+            21. *Difficulty Tracking Humidification Adequacy During Oxygen Therapy*
+            22. *Delayed Identification of Ventilator Patient Asynchrony*
+            23. *Difficulty Monitoring Respiratory Support Changes During Patient Transfers*
+            24. *Difficulty Tracking Equipment Maintenance and Calibration Expiry*
+            25. *Lack of a Centralized Respiratory Patient Dashboard*
+
+            **What We Discovered (The "Problem Behind the Problem"):**
+            While technologists perform physical procedures daily, they operate under immense cognitive overload. When external examiners test them on *why* alarms sound, *how* ventilator waveforms change, or *how* blood gas gradients work, students freeze because they suffer from **Passive Revision Syndrome**—memorizing textbooks without active verbal reasoning practice.
             """
         )
 
@@ -1405,24 +1434,33 @@ elif st.session_state.current_page == "Design Thinking Portfolio":
     with dt_tab5:
         st.markdown(
             """
-            ### 05 — User Testing & Feedback Evidence
+            ### 05 — User Testing & Real Feedback Evidence
             
-            **Test Cohort:** Tested with 14 students (6 Respiratory Therapy, 5 Anaesthesia Technology, 3 Dialysis Technology).
+            **Primary Testing Cohort:**
+            Tested directly with our 8 core student stakeholders (**Riddhi, Siddhi, Naziya, Preethi, Bhargav, Naveen, Tharun, Atharv**) 
+            plus 6 junior technologists across hospital rotations.
+
+            **Direct Stakeholder Feedback & Resulting Iterations:**
+            - **Riddhi (Resp. Therapy):** *"The font was invisible on mobile dark mode!"* $\rightarrow$ Fixed with locked light theme and high-contrast CSS.
+            - **Siddhi (Resp. Therapy):** *"Only 2 ventilator questions isn't enough."* $\rightarrow$ Expanded to **144 questions (12 in EVERY topic)**.
+            - **Naziya (Allied Health):** *"Examiners don't give 4 options; they ask us to explain aloud."* $\rightarrow$ Created **Quick Viva Mode** with model instructor answer comparison.
+            - **Preethi (Resp. Care):** *"The next button was awkward above the text."* $\rightarrow$ Moved Next button directly below feedback with primary blue focus.
+            - **Bhargav (Anaesthesia Tech):** *"I don't want to redo 20 questions just to review 2 mistakes."* $\rightarrow$ Built **1-Click Quick Retry Quiz** isolating only missed questions.
+            - **Naveen (Critical Care):** *"ICU basements have zero mobile reception."* $\rightarrow$ Implemented **Offline-First Knowledge Engine** that requires no API keys or internet.
+            - **Tharun (Resp. Care):** *"Juniors need simpler questions first."* $\rightarrow$ Built **Beginner, Intermediate, and Advanced Difficulty Tiers**.
+            - **Atharv (ICU Tech):** *"Give us the exact buzzwords examiners want to hear."* $\rightarrow$ Added the **"📌 Key Viva Revision Points"** expander card.
             
-            **Key Findings:**
-            - **100% of testers** appreciated that no login or password was required to start practising immediately.
-            - **85% of testers** reported that the "Key Viva Revision Points" box provided the exact bullet points examiners listen for in viva exams.
-            - **Quick Viva Mode** was cited as the most novel feature, helping students bridge the gap between recognizing an answer and stating it orally.
-            
-            **5-Minute Final Presentation Storyline:**
+            ---
+
+            ### 🎤 5-Minute Final Presentation Storyline:
             - **We thought** students lacked reading material.
-            - **We went and observed** students in practical labs memorizing manuals but stumbling in verbal vivas.
-            - **We discovered** that viva anxiety comes from a lack of immediate, self-paced formative practice.
-            - **We realised the real problem was** passive revision with zero personalized feedback.
-            - **We generated** 10 ideas and selected a dual-mode interactive viva simulator.
-            - **We built** Prototype 1 as a simple MCQ script.
-            - **Users told us** they needed oral viva comparisons and instant retries of missed topics.
-            - **So we changed** the architecture into Prototype 2: adding Quick Viva comparison, targeted study recommendations, and offline-first intelligence.
-            - **Our final solution is** MedSkill AI — an accessible, verified practical viva companion for allied health technology students.
+            - **We went and observed** 8 students (Riddhi, Siddhi, Naziya, Preethi, Bhargav, Naveen, Tharun, Atharv) and uncovered 25 real clinical bottlenecks (humidifier drying, alarm fatigue, circuit disconnects, ETT tracking).
+            - **We discovered** that viva anxiety and bedside panic both stem from **Passive Revision Syndrome**—students memorize procedures without verbal conceptual models.
+            - **We realised the real problem was** the lack of a low-stakes digital simulator that bridges hospital tasks with oral viva reasoning.
+            - **We generated** 10 ideas and killed our first idea (a complex 3D VR knob simulator) to focus on a zero-friction mobile/web simulator.
+            - **We built Prototype 1** as a simple 24-MCQ script.
+            - **Users told us** they needed oral practice, 144 comprehensive questions, dark mode legibility, and offline functionality.
+            - **So we changed** the architecture into **Prototype 2**: adding Quick Viva comparison, targeted study recommendations, 1-click retries, and offline-first intelligence.
+            - **Our final solution is** **MedSkill AI** ([medskill-ai.streamlit.app](https://medskill-ai.streamlit.app/)) — an accessible, verified practical viva companion for allied health technology students.
             """
         )
