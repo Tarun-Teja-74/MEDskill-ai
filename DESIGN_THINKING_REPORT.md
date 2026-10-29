@@ -221,6 +221,21 @@ flowchart TD
 
 ## 💡 Section 5: Stage 03 — Ideate
 
+### Critical Differentiator: Generic AI Chatbot vs. Dedicated Viva Trainer (MedSkill AI)
+A central question in medical educational engineering is: 'Why build a dedicated platform when students could simply ask a generic chatbot like ChatGPT, Claude, or Microsoft Copilot?'
+
+Through empirical testing and student feedback from our 8 stakeholders, we established six fundamental failure modes of generic chatbots for viva preparation, and engineered MedSkill AI to solve them:
+
+| Evaluation Dimension | Generic AI Chatbot (ChatGPT / Copilot / Claude) | MedSkill AI (Dedicated Viva Simulator) |
+| :--- | :--- | :--- |
+| **Curriculum Grounding** | Generates generic, unbounded text; prone to clinical hallucinations, conflicting drug dosages, and non-syllabus guidelines. | Strictly anchored to **144 verified curriculum viva items** from *Egan*, *Miller*, and *Daugirdas* textbooks. |
+| **Psychological Viva Urgency** | Completely static. Chatbots wait indefinitely for user input with zero psychological stress stimulus. | **Active 30-Second Examiner Pressure Mode:** Rapid countdown timer with color-coded urgency alerts replicating oral viva anxiety. |
+| **Offline Floor Resilience** | Requires uninterrupted broadband connectivity; completely unworkable in shielded hospital basements and ICU corridors. | **100% Offline-First Architecture:** Tier 1 local retrieval operates with zero latency, zero internet, and zero API dependencies. |
+| **Structured Practice Flow** | Open-ended conversational stream lacking objective difficulty tiers, question tracking, or topic-level mastery metrics. | **Dual Practice Modes:** Objective MCQ diagnostic mode + Spoken Quick Viva self-evaluation against reference instructor models. |
+| **Targeted Remediation** | No automated gap analysis. The student must manually ask 'what did I get wrong?' with no persistence. | **1-Click Quick Retry Quiz** isolating only failed items + **1-Click Pocket Viva Cram Sheet (.docx)** generator. |
+| **Clinical Safety Boundaries** | Unbounded generative conversational AI; presents high liability risk for unauthorized medical advice. | Non-prescriptive educational sandbox with prominent institutional disclaimers and verified answer keys. |
+
+
 ### 5.1 "Killing Our First Idea"
 - **The Team's First Obvious Solution:** Build a complex 3D mobile simulator game where students navigate virtual reality ICU equipment knobs.
 - **Why It Failed / Was Discarded:**

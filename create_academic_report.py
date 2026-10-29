@@ -310,6 +310,27 @@ def generate_report():
     add_academic_heading(doc, "6.2 Concept Generation and Decision Matrix", level=2)
     add_body_p(doc, "Using Brainstorming and SCAMPER techniques, ten divergent concepts were formulated and evaluated against four criteria: Educational Impact (30%), Accessibility (30%), Feasibility in 10 Days (20%), and Low Friction (20%). The highest-scoring concept was a responsive web-based dual-mode practical viva trainer combining objective MCQ diagnosis with spoken response self-evaluation.")
 
+    add_academic_heading(doc, "6.3 Critical Differentiator: Generic AI Chatbot vs. Dedicated Viva Trainer", level=2)
+    add_body_p(doc, "A central question in medical educational engineering is: 'Why build a dedicated platform when students could simply ask a generic chatbot like ChatGPT, Claude, or Microsoft Copilot?' Through empirical testing and student feedback, we established six fundamental failure modes of generic chatbots for viva preparation, and engineered MedSkill AI to solve them:")
+    
+    comp_table = doc.add_table(rows=7, cols=3)
+    comp_headers = ["Evaluation Dimension", "Generic AI Chatbot (ChatGPT / Copilot / Claude)", "MedSkill AI (Dedicated Viva Simulator)"]
+    for j, h in enumerate(comp_headers):
+        comp_table.rows[0].cells[j].paragraphs[0].text = h
+        
+    comp_rows = [
+        ("Curriculum Grounding", "Generates generic, unbounded text; prone to clinical hallucinations, conflicting drug dosages, and non-syllabus guidelines.", "Strictly anchored to 144 verified curriculum viva items from Egan, Miller, and Daugirdas textbooks."),
+        ("Psychological Viva Urgency", "Completely static. Chatbots wait indefinitely for user input with zero psychological stress stimulus.", "Active 30-Second Examiner Pressure Mode: Rapid countdown timer with color-coded urgency alerts replicating oral viva anxiety."),
+        ("Offline Floor Resilience", "Requires uninterrupted broadband connectivity; completely unworkable in shielded hospital basements and ICU corridors.", "100% Offline-First Architecture: Tier 1 local retrieval operates with zero latency, zero internet, and zero API dependencies."),
+        ("Structured Practice Flow", "Open-ended conversational stream lacking objective difficulty tiers, question tracking, or topic-level mastery metrics.", "Dual Practice Modes: Objective MCQ diagnostic mode + Spoken Quick Viva self-evaluation against reference instructor models."),
+        ("Targeted Remediation", "No automated gap analysis. The student must manually ask 'what did I get wrong?' with no persistence.", "1-Click Quick Retry Quiz isolating only failed items + 1-Click Pocket Viva Cram Sheet (.docx) generator."),
+        ("Clinical Safety Boundaries", "Unbounded generative conversational AI; presents high liability risk for unauthorized medical advice.", "Non-prescriptive educational sandbox with prominent institutional disclaimers and verified answer keys.")
+    ]
+    for r_idx, r_data in enumerate(comp_rows, start=1):
+        for c_idx, val in enumerate(r_data):
+            comp_table.rows[r_idx].cells[c_idx].paragraphs[0].text = val
+    apply_table_styles(comp_table, [Inches(1.8), Inches(2.6), Inches(2.6)])
+
     # -------------------------------------------------------------
     # CHAPTER 7: SYSTEM REQUIREMENTS & ARCHITECTURE
     # -------------------------------------------------------------
@@ -362,6 +383,8 @@ def generate_report():
     add_body_p(doc, "3. Targeted Remediation: Added the 1-click Quick Retry Quiz based on Bhargav's complaint that repeating completed questions wasted revision time.")
     add_body_p(doc, "4. High-Contrast Contrast Lock: Resolved the critical dark-mode white font defect reported by Riddhi using .streamlit/config.toml.")
     add_body_p(doc, "5. Offline Resilience: Built a local keyword retrieval engine in query_optional_ai() to satisfy Naveen's requirement for functioning in hospital basements with zero internet.")
+    add_body_p(doc, "6. Psychological Viva Urgency (Examiner Pressure Mode): Added an optional 30-second rapid countdown timer with color-coded urgency alerts to simulate real examiner questioning speed, addressing Preethi's feedback regarding exam panic.")
+    add_body_p(doc, "7. Portable Clinical Revision (Pocket Viva Cram Sheet Generator): Integrated a 1-click Word document generator (.docx) producing an ultra-compact, high-yield cheat-sheet of missed questions, physiological rationales, and examiner buzzwords for students waiting outside the exam hall.")
 
     # -------------------------------------------------------------
     # CHAPTER 11: TESTING & VERIFICATION RESULTS
@@ -403,8 +426,14 @@ def generate_report():
     for r_item in refs:
         add_body_p(doc, r_item)
 
-    doc.save("MedSkill_AI_Design_Thinking_Report.docx")
-    print("Saved MedSkill_AI_Design_Thinking_Report.docx successfully.")
+    out_name = "MedSkill_AI_Design_Thinking_Report_Final.docx"
+    doc.save(out_name)
+    print(f"Saved {out_name} successfully.")
+    try:
+        doc.save("MedSkill_AI_Design_Thinking_Report.docx")
+        print("Also updated MedSkill_AI_Design_Thinking_Report.docx.")
+    except Exception as e:
+        print(f"Could not overwrite MedSkill_AI_Design_Thinking_Report.docx (open in Word): {e}")
 
 if __name__ == "__main__":
     generate_report()
