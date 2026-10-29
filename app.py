@@ -20,6 +20,7 @@ from questions import (
     get_question_by_id,
     get_all_revision_notes_for_topic,
 )
+from cram_sheet_generator import generate_pocket_cram_sheet
 
 # -----------------------------------------------------------------------------
 # PAGE CONFIGURATION & CUSTOM STYLING
@@ -413,6 +414,10 @@ if "current_submitted" not in st.session_state:
 # Feedback state for current question
 if "current_feedback" not in st.session_state:
     st.session_state.current_feedback = None
+
+# Examiner Pressure Mode (30-second rapid countdown timer)
+if "examiner_timer_enabled" not in st.session_state:
+    st.session_state.examiner_timer_enabled = False
 
 
 # -----------------------------------------------------------------------------
@@ -809,6 +814,17 @@ elif st.session_state.current_page == "Select Specialty & Topic":
         )
         st.session_state.practice_mode = mode
 
+        st.markdown("<div style='margin-top:0.5rem;'></div>", unsafe_allow_html=True)
+        # Examiner Pressure Mode Toggle
+        pressure_toggle = st.toggle(
+            "⏱️ 30-Second Examiner Pressure Mode",
+            value=st.session_state.examiner_timer_enabled,
+            help="Simulates high-stakes viva exam room conditions with an active 30-second rapid answer countdown timer."
+        )
+        st.session_state.examiner_timer_enabled = pressure_toggle
+        if pressure_toggle:
+            st.caption("🔥 *Examiner Pressure Active: You will have 30 seconds to answer before the examiner presses for an answer!*")
+
     with col2:
         # Live preview of questions matching filters
         matching_questions = get_questions_for_specialty(spec, topic, diff)
@@ -834,6 +850,21 @@ elif st.session_state.current_page == "Select Specialty & Topic":
             if st.button("🚀 Begin Viva Practice", type="primary", use_container_width=True):
                 reset_practice_session(matching_questions)
                 navigate_to("Viva Practice")
+
+            # 1-Click Pocket Viva Cram Sheet Download for the selected topic/specialty
+            topic_cram_bytes = generate_pocket_cram_sheet(
+                specialty=f"{spec} - {topic}",
+                questions_list=matching_questions,
+                missed_only=False
+            )
+            st.download_button(
+                label="📄 Download Topic Cram Sheet (.docx)",
+                data=topic_cram_bytes,
+                file_name=f"MedSkill_AI_{spec[:4]}_{topic[:6]}_Cram_Sheet.docx".replace(" ", "_"),
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                use_container_width=True,
+                help="Download a high-yield, printable summary of questions and examiner keywords for this specific topic."
+            )
 
 
 # -----------------------------------------------------------------------------
@@ -899,6 +930,49 @@ elif st.session_state.current_page == "Viva Practice":
 
         q_id = current_q["id"]
         is_already_answered = q_id in st.session_state.session_answers
+
+        # -------------------
+        # 30-SECOND EXAMINER PRESSURE MODE TIMER
+        # -------------------
+        if st.session_state.examiner_timer_enabled:
+            timer_box_html = f"""
+            <div style="background:#FFFBEB; border:1.5px solid #F59E0B; border-radius:8px; padding:0.6rem 1rem; margin-top:0.6rem; display:flex; align-items:center; justify-content:space-between;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.2rem;">⏱️</span>
+                    <div>
+                        <b style="color:#92400E; font-size:0.9rem;">Examiner Pressure Active:</b>
+                        <span style="color:#78350F; font-size:0.85rem; margin-left:4px;">The examiner expects a rapid oral answer within 30 seconds.</span>
+                    </div>
+                </div>
+                <div id="viva_timer_badge_{q_id}" style="font-size:1.15rem; font-weight:800; font-family:monospace; background:#FEF3C7; color:#B45309; padding:2px 10px; border-radius:6px; border:1px solid #FCD34D;">
+                    30s
+                </div>
+            </div>
+            <script>
+            (function() {{
+                var timeLeft = 30;
+                var el = document.getElementById("viva_timer_badge_{q_id}");
+                if (!el) return;
+                var timerId = setInterval(function() {{
+                    timeLeft--;
+                    if (timeLeft > 0) {{
+                        el.innerText = timeLeft + "s";
+                        if (timeLeft <= 10) {{
+                            el.style.color = "#DC2626";
+                            el.style.background = "#FEE2E2";
+                            el.style.borderColor = "#F87171";
+                        }}
+                    }} else {{
+                        el.innerText = "TIME UP!";
+                        el.style.color = "#FFFFFF";
+                        el.style.background = "#DC2626";
+                        clearInterval(timerId);
+                    }}
+                }}, 1000);
+            }})();
+            </script>
+            """
+            st.markdown(timer_box_html, unsafe_allow_html=True)
 
         # -------------------
         # MCQ MODE
@@ -1187,8 +1261,8 @@ elif st.session_state.current_page == "Study Recommendations":
             unsafe_allow_html=True
         )
 
-        # Retry quiz button directly targeting missed questions
-        col_retry, col_space = st.columns([2, 3])
+        # Action row: Retry Quiz + 1-Click Pocket Viva Cram Sheet Download
+        col_retry, col_cram = st.columns([1.5, 1.5])
         with col_retry:
             if st.button("⚡ Quick Retry: Quiz Missed Questions Only", type="primary", use_container_width=True):
                 # Reset practice with only missed questions
@@ -1198,6 +1272,21 @@ elif st.session_state.current_page == "Study Recommendations":
                         del st.session_state.session_answers[q["id"]]
                 reset_practice_session(incorrect_questions)
                 navigate_to("Viva Practice")
+
+        with col_cram:
+            cram_docx_bytes = generate_pocket_cram_sheet(
+                specialty=st.session_state.selected_specialty,
+                questions_list=incorrect_questions,
+                missed_only=True
+            )
+            st.download_button(
+                label="📄 Download Pocket Cram Sheet (.docx)",
+                data=cram_docx_bytes,
+                file_name="MedSkill_AI_Missed_Viva_Cram_Sheet.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                use_container_width=True,
+                help="Generates an ultra-compact, high-yield printable summary of your missed viva questions, physical principles, and examiner buzzwords."
+            )
 
         st.markdown("### 📖 High-Yield Revision Notes for Weak Areas")
         
@@ -1343,7 +1432,37 @@ elif st.session_state.current_page == "Design Thinking Portfolio":
             - **Tharun & Atharv** (3rd & 2nd Year, Ventilator & ICU Technology)
 
             ---
+            """
+        )
 
+        st.markdown("#### 📸 Direct Field Research Evidence & Student Interviews")
+        img_col1, img_col2 = st.columns(2)
+        with img_col1:
+            st.image(
+                "assets/interviews/interview_photo_1.jpg",
+                caption="Figure E.1: Conducting in-person empathy interview and question audit with Respiratory student stakeholder.",
+                use_container_width=True
+            )
+            st.image(
+                "assets/interviews/hand_sketch_notes.jpg",
+                caption="Figure E.3: Bedside hand-sketched diagrams detailing humidifier bottle circuits and transport cylinder risks.",
+                use_container_width=True
+            )
+        with img_col2:
+            st.image(
+                "assets/interviews/interview_photo_2.jpg",
+                caption="Figure E.2: Deep-dive session recording practical viva pain points, alarm fatigue, and passive revision habits.",
+                use_container_width=True
+            )
+            st.image(
+                "assets/interviews/interview_written_notes.png",
+                caption="Figure E.4: Actual handwritten field notes capturing floor hazards (humidifier low water, self-extubation, gas leak checks, TMP spikes).",
+                use_container_width=True
+            )
+
+        st.markdown(
+            """
+            ---
             #### 📋 25 Real Clinical Problems Discovered Through Direct Observation
             Through shadowing shifts and deep user interviews, the team documented 25 genuine problems experienced by students on hospital floors:
             1. *Low Water Level in Oxygen Humidifier Bottles*
@@ -1424,6 +1543,8 @@ elif st.session_state.current_page == "Design Thinking Portfolio":
             | Feature | Prototype 1 (Initial Build) | Prototype 2 (Current Iteration) | User Feedback Driver |
             | :--- | :--- | :--- | :--- |
             | **Practice Modes** | MCQ Only | Added **Quick Viva Mode** (Student types answer & compares with reference) | *"Examiners ask oral questions, not multiple choice!"* |
+            | **Viva Urgency** | Untimed static quiz | **30-Second Examiner Pressure Mode** (Rapid countdown timer) | *"We panic because examiners don't wait — simulate that urgency."* |
+            | **Offline Study Takeaway** | Screen-only viewing | **1-Click Pocket Viva Cram Sheet** (Printable .docx generator) | *"Give us a 2-page cheat sheet of missed questions to carry to the exam hall."* |
             | **Difficulty Levels** | Flat list of questions | **Beginner / Intermediate / Advanced** tags | *"First-year students need foundational questions first."* |
             | **Revision Flow** | Generic results page | **Targeted Study Recommendations** with a 1-click **"Retry Missed Questions Quiz"** | *"Show me only the questions I got wrong so I can retest."* |
             | **Connectivity** | Required external API | **Offline-First Local Knowledge Retrieval** fallback | *"Hospital basements and college labs have terrible internet."* |
