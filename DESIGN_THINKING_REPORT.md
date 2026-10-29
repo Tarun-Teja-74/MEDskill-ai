@@ -135,6 +135,17 @@ This directly addresses the cognitive root cause behind Problems 1, 2, 5, 8, 9, 
 
 ## 🤝 Section 3: Stage 01 — Empathize
 
+### Direct Field Research Evidence and Stakeholder Interaction
+Direct observational studies and interviews were conducted on-site with undergraduate student stakeholders (**Riddhi, Siddhi, Naziya, Preethi, Bhargav, Naveen, Tharun, and Atharv**).
+
+| Evidence Figure | Description & Context |
+| :--- | :--- |
+| ![Interview Photo 1](assets/interviews/interview_photo_1.jpg) | **Figure E.1:** Live Empathy Interview with Respiratory Student Stakeholder analyzing viva anxiety. |
+| ![Interview Photo 2](assets/interviews/interview_photo_2.jpg) | **Figure E.2:** Deep-dive session recording floor obstacles, alarm fatigue, and passive revision habits. |
+| ![Hand Sketch Notes](assets/interviews/hand_sketch_notes.jpg) | **Figure E.3:** Bedside Technical Sketches: Humidifier bottle dry-out hazards and transport oxygen cylinders. |
+| ![Written Notes](assets/interviews/interview_written_notes.png) | **Figure E.4:** Authentic Field Notes: 25 clinical hazards including ETT migration, gas check lapses, and TMP spikes. |
+
+
 ### 3.1 Depth of User Interactions
 - **Total Interviews Conducted:** 14 undergraduate healthcare technology students and 2 clinical faculty instructors.
   - Respiratory Therapy Students: 6 (Years 2 & 3)
@@ -238,6 +249,13 @@ flowchart TD
 ---
 
 ## 🛠️ Section 6: Stage 04 — Prototype Evolution (Prototype 1 $\rightarrow$ Prototype 2)
+
+### Live Deployed Prototype Interface
+The deployed web application interface (accessible at [https://medskill-ai.streamlit.app/](https://medskill-ai.streamlit.app/)) is shown below:
+
+![MedSkill AI Web App Screenshot](assets/interviews/app_screenshot.png)
+*Figure P.1: Live MedSkill AI Web Interface with High-Contrast Academic Styling, Practice Modes, and Immediate Answer Feedback.*
+
 
 ### 6.1 Prototype 1 (Initial Build)
 - Built as a basic Python Streamlit script with 24 questions (8 per specialty).
